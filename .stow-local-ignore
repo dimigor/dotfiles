@@ -1,0 +1,8 @@
+.DS_Store
+.gitconfig
+.git
+.gitignore
+
+backup/
+tmp_config.json
+pycharm_settings.zip
