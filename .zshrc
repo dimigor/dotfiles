@@ -1,10 +1,16 @@
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 
+setopt globdots
+
 # Ensure colors match by using FZF_DEFAULT_OPTS.
 zstyle ":fzf-tab:*" use-fzf-default-opts yes
-# Preview file contents when tab completing directories.
-zstyle ":fzf-tab:complete:cd:*" fzf-preview "ls --color=always \${realpath}"
+
+# complete `ls` / `cat` / etc
+zstyle ':fzf-tab:complete:(|/|*/)(ls|gls|bat|cat|cd|rm|cp|mv|ln|vim|code|open|tail|tree|source):*' \
+  fzf-preview \
+  '[[ -d $realpath ]] && ls --color=always "$realpath" || bat --color=always --style=numbers "$realpath" 2>/dev/null'
+
 
 plugins=(git mise direnv fzf-tab kubectl poetry-env poetry pre-commit
 asdf encode64 fast-syntax-highlighting zsh-autosuggestions )
