@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+set -e
+
+PROFILE="189735301515:backend-developers"
+REPO_NAME="Sendcloud"
+
+echo "🔐 Logging into AWS SSO..."
+aws-sso login
+
+echo "🔄 Fetching AWS credentials and updating Poetry token..."
+aws-sso exec --profile "$PROFILE" -- bash -c "
+  TOKEN=\$(jeton)
+  if [ -z \"\$TOKEN\" ]; then
+    echo '❌ Failed to fetch token'; exit 1
+  fi
+  poetry config http-basic.$REPO_NAME aws \"\$TOKEN\"
+  echo '✅ Poetry token updated for repo: $REPO_NAME'
+"
+
+echo "🎉 Done!"

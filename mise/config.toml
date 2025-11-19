@@ -1,0 +1,19 @@
+# mise configuration for development environment
+# https://mise.jdx.dev/configuration.html
+
+[tools]
+python = "3.13.5"  # Latest stable Python version
+poetry = "2.1.4"   # Latest poetry
+uv = "latest"      # Latest uv package manager
+awscli = "2.27.45" # Latest AWS CLI
+helm = "3.18.3"    # Latest Helm
+helmfile = "1.1.2" # Latest Helmfile
+task = "3.43.3"    # Task runner
+
+[env]
+# Set Python to prefer user site-packages
+_.python.venv = { path = ".venv", create = true }
+
+[settings]
+auto_install = true
+legacy_version_file = true
