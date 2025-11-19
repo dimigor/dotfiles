@@ -4,21 +4,7 @@ setopt globdots
 setopt appendhistory
 setopt sharehistory
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Path ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-# Add custom paths to the existing PATH
-# path=(
-#   $path
-#   $HOME/bin
-#   $HOME/.local/bin
-#   $HOME/.rd/bin
-#   /Applications/PyCharm.app/Contents/MacOS
-# )
-#
-# # Remove duplicates and non-existent directories
-# typeset -U path
-# path=($^path(N-/))
-# export PATH
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ENVs ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
@@ -35,7 +21,6 @@ zstyle ':fzf-tab:complete:(|/|*/)(ls|gls|bat|cat|cd|rm|cp|mv|ln|vim|code|open|ta
   fzf-preview \
   '[[ -d $realpath ]] && ls --color=always "$realpath" ||
   bat --color=always --style=numbers --bind shift-up:preview-up,shift-down:preview-down "$realpath" 2>/dev/null'
-
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Plugins ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -59,7 +44,6 @@ function poetry() {
   command poetry "$@"
 }
 
-
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Completions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 eval "$(/Users/d.gorbachevskyy/.local/bin/mise activate zsh)"
@@ -67,3 +51,19 @@ eval "$(uv generate-shell-completion zsh)"
 
 autoload -Uz compinit
 compinit
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Path ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# Add custom paths after mise activation to ensure proper order
+path=(
+  $HOME/.local/bin
+  $HOME/bin
+  $HOME/.rd/bin
+  /Applications/PyCharm.app/Contents/MacOS
+  $path
+)
+
+# Remove duplicates and non-existent directories
+typeset -U path
+path=($^path(N-/))
+export PATH
