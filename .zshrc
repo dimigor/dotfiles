@@ -25,7 +25,7 @@ zstyle ':fzf-tab:complete:(|/|*/)(ls|gls|bat|cat|cd|rm|cp|mv|ln|vim|code|open|ta
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Plugins ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 plugins=(git mise direnv fzf-tab kubectl poetry-env poetry pre-commit
-asdf encode64 fast-syntax-highlighting zsh-autosuggestions )
+asdf encode64 fast-syntax-highlighting zsh-autosuggestions colorize )
 
 source $ZSH/oh-my-zsh.sh
 source <(fzf --zsh)
@@ -44,14 +44,6 @@ function poetry() {
   command poetry "$@"
 }
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Completions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-eval "$(/Users/d.gorbachevskyy/.local/bin/mise activate zsh)"
-eval "$(uv generate-shell-completion zsh)"
-
-autoload -Uz compinit
-compinit
-
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Path ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Add custom paths after mise activation to ensure proper order
@@ -59,6 +51,7 @@ path=(
   $HOME/.local/bin
   $HOME/bin
   $HOME/.rd/bin
+  $HOME/.local/share/mise/shims
   /Applications/PyCharm.app/Contents/MacOS
   $path
 )
@@ -67,3 +60,13 @@ path=(
 typeset -U path
 path=($^path(N-/))
 export PATH
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Completions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+eval "$(mise activate zsh)"
+
+# Generate uv completions (now that uv is in PATH)
+eval "$(uv generate-shell-completion zsh)"
+
+autoload -Uz compinit
+compinit
