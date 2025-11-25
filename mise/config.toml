@@ -1,6 +1,13 @@
 [settings]
 experimental = true
 idiomatic_version_file_enable_tools = ["python"]
+python.uv_venv_auto = true
+
+[env]
+POETRY_VIRTUALENVS_IN_PROJECT = "true"
+
+[plugins]
+sc-cli = "git@gitlab.com:sendcloud/platform/asdf-sc-cli.git"
 
 [settings.pipx]
 uvx = true
@@ -24,10 +31,9 @@ uv = 'latest'
 "pipx:ipython" = "latest"
 "pipx:isort" = "latest"
 "pipx:mypy" = "latest"
-"pipx:pipx" = "latest"
 "pipx:pytest" = "latest"
-"pipx:tox" = "latest"
 "pipx:ty" = "latest"
+"pipx:flake8" = "latest"
 "pipx:pytest-language-server" = "latest"
 
 # runtimes (needs to be last)
@@ -35,6 +41,7 @@ go = 'latest'
 node = 'latest'
 python = ['3.14', '3.13', '3.12', '3.11', '3.10']
 rust = 'latest'
+usage = "latest"
 
 [tasks."docker:prune"]
 description = 'Docker prune'
@@ -56,4 +63,13 @@ depends = ["docker:prune"]
 description = 'Docker prune all'
 run = """
 docker volume prune -a -f
+"""
+
+[tasks."install:blueprint"]
+description = 'Install blueprint from local path with Sendcloud repository'
+run = """
+export CODEARTIFACT_AUTH_TOKEN=$(aws-sso exec --profile 189735301515:backend-developers -- jeton)
+uv pip install --system --editable ~/Sendcloud/blueprint \
+  --index-url "https://aws:${CODEARTIFACT_AUTH_TOKEN}@sendcloud-189735301515.d.codeartifact.eu-central-1.amazonaws.com/pypi/Sendcloud/simple/" \
+  --extra-index-url https://pypi.org/simple
 """

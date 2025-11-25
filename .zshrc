@@ -52,6 +52,7 @@ path=(
   $HOME/bin
   $HOME/.rd/bin
   $HOME/.local/share/mise/shims
+  $HOME/.antigravity/antigravity/bin
   /Applications/PyCharm.app/Contents/MacOS
   $path
 )
