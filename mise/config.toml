@@ -64,12 +64,3 @@ description = 'Docker prune all'
 run = """
 docker volume prune -a -f
 """
-
-[tasks."install:blueprint"]
-description = 'Install blueprint from local path with Sendcloud repository'
-run = """
-export CODEARTIFACT_AUTH_TOKEN=$(aws-sso exec --profile 189735301515:backend-developers -- jeton)
-uv pip install --system --editable ~/Sendcloud/blueprint \
-  --index-url "https://aws:${CODEARTIFACT_AUTH_TOKEN}@sendcloud-189735301515.d.codeartifact.eu-central-1.amazonaws.com/pypi/Sendcloud/simple/" \
-  --extra-index-url https://pypi.org/simple
-"""
