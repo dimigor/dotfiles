@@ -71,3 +71,7 @@ eval "$(uv generate-shell-completion zsh)"
 
 autoload -Uz compinit
 compinit
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/d.gorbachevskyy/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)

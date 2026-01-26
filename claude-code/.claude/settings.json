@@ -1,0 +1,16 @@
+{
+  "statusLine": {
+    "type": "command",
+    "command": "ccstatusline"
+  },
+  "enabledPlugins": {
+    "pyright-lsp@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true,
+    "python-development@claude-code-workflows": true,
+    "code-review-ai@claude-code-workflows": true,
+    "backend-development@claude-code-workflows": true,
+    "plugin-dev@claude-plugins-official": true,
+    "core@sendcloud": true
+  },
+  "model": "sonnet"
+}
