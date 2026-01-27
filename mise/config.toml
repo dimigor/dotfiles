@@ -2,6 +2,8 @@
 experimental = true
 idiomatic_version_file_enable_tools = ["python"]
 python.uv_venv_auto = true
+pipx.uvx = true
+npm.bun = true
 
 [env]
 POETRY_VIRTUALENVS_IN_PROJECT = "true"
@@ -9,7 +11,6 @@ VIRTUAL_ENV_DISABLE_PROMPT = "1"
 
 [plugins]
 sc-cli = "git@gitlab.com:sendcloud/platform/asdf-sc-cli.git"
-
 
 [tools]
 github-cli = 'latest'
@@ -23,7 +24,6 @@ ruff = 'latest'
 sc-cli = 'latest'
 uv = 'latest'
 
-# pipx tools
 "pipx:copier" = "latest"
 "pipx:django-language-server" = "latest"
 "pipx:djlint" = "latest"
@@ -37,7 +37,10 @@ uv = 'latest'
 "pipx:iredis" = "latest"
 "pipx:pytest-language-server" = "latest"
 
+"npm:ccstatusline" = "latest"
+
 # runtimes (needs to be last)
+bun = 'latest'
 go = 'latest'
 node = 'latest'
 python = ['3.14', '3.13', '3.12', '3.11', '3.10']

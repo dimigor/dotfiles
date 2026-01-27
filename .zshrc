@@ -74,4 +74,4 @@ compinit
 
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
 export PATH="/Users/d.gorbachevskyy/.rd/bin:$PATH"
-### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+export PATH="/Users/d.gorbachevskyy/.local/share/mise/installs/npm-ccstatusline/2.0.23/bin:$PATH"
