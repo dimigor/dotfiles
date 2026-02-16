@@ -1,0 +1,82 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+DOTFILES_DIR="$HOME/.dotfiles"
+PACKAGES=("claude-code" "mise")
+
+usage() {
+    cat <<EOF
+Usage: $(basename "$0") [OPTIONS] [PACKAGE...]
+
+Sync dotfiles using GNU stow.
+
+OPTIONS:
+    -h, --help      Show this help message
+    -d, --dry-run   Show what would be done without making changes
+    -a, --all       Sync all packages (default if no packages specified)
+
+EXAMPLES:
+    $(basename "$0")              # Sync all packages
+    $(basename "$0") claude-code  # Sync only claude-code
+    $(basename "$0") --dry-run    # Preview changes
+EOF
+}
+
+main() {
+    local dry_run=false
+    local packages_to_sync=()
+
+    while [[ $# -gt 0 ]]; do
+        case $1 in
+            -h|--help)
+                usage
+                exit 0
+                ;;
+            -d|--dry-run)
+                dry_run=true
+                shift
+                ;;
+            -a|--all)
+                packages_to_sync=("${PACKAGES[@]}")
+                shift
+                ;;
+            *)
+                packages_to_sync+=("$1")
+                shift
+                ;;
+        esac
+    done
+
+    if [[ ${#packages_to_sync[@]} -eq 0 ]]; then
+        packages_to_sync=("${PACKAGES[@]}")
+    fi
+
+    cd "$DOTFILES_DIR"
+
+    echo "🔄 Syncing dotfiles..."
+    echo "📁 Working directory: $DOTFILES_DIR"
+    echo ""
+
+    for package in "${packages_to_sync[@]}"; do
+        if [[ ! -d "$package" ]]; then
+            echo "⚠️  Package '$package' not found, skipping..."
+            continue
+        fi
+
+        echo "📦 Syncing $package..."
+
+        if [[ "$dry_run" == true ]]; then
+            stow --restow --verbose=2 --no --target="$HOME" "$package" 2>&1 | grep -E "^(LINK|UNLINK|MKDIR)" || true
+        else
+            stow --restow --verbose=1 --target="$HOME" "$package"
+        fi
+
+        echo "✅ $package synced"
+        echo ""
+    done
+
+    echo "🎉 Done!"
+}
+
+main "$@"

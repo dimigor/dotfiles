@@ -1,4 +1,5 @@
 {
+  "model": "opusplan",
   "statusLine": {
     "type": "command",
     "command": "ccstatusline"
@@ -12,5 +13,5 @@
     "plugin-dev@claude-plugins-official": true,
     "core@sendcloud": true
   },
-  "model": "sonnet"
+  "skipDangerousModePermissionPrompt": true
 }
