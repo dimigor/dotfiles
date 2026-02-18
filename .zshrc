@@ -24,7 +24,7 @@ zstyle ':fzf-tab:complete:(|/|*/)(ls|gls|bat|cat|cd|rm|cp|mv|ln|vim|code|open|ta
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Plugins ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-plugins=(git mise direnv fzf-tab kubectl poetry-env poetry pre-commit
+plugins=(git mise direnv fzf-tab kubectl poetry-env pre-commit
 asdf encode64 fast-syntax-highlighting zsh-autosuggestions colorize )
 
 source $ZSH/oh-my-zsh.sh

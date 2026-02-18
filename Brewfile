@@ -31,3 +31,6 @@ brew "zsh-fast-syntax-highlighting"
 cask "claude-code"
 # Reverse proxy, secure introspectable tunnels to localhost
 cask "ngrok"
+
+brew "datadog/pack/pup"
+brew "glab"
