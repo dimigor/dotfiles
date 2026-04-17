@@ -36,6 +36,7 @@ uv = 'latest'
 "pipx:pgcli" = "latest"
 "pipx:iredis" = "latest"
 "pipx:pytest-language-server" = "latest"
+"pipx:serena" = "latest"
 
 "npm:ccstatusline" = "latest"
 

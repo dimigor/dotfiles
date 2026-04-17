@@ -1,14 +1,16 @@
 {
   "model": "opusplan",
+  "env": {
+    "CLAUDE_CODE_NO_FLICKER": "1",
+    "COLORTERM": "truecolor"
+  },
   "statusLine": {
     "type": "command",
-    "command": "ccstatusline"
+    "command": "bash /Users/d.gorbachevskyy/.claude/statusline-command.sh"
   },
   "enabledPlugins": {
     "pyright-lsp@claude-plugins-official": true,
-    "typescript-lsp@claude-plugins-official": true,
     "python-development@claude-code-workflows": true,
-    "code-review-ai@claude-code-workflows": true,
     "backend-development@claude-code-workflows": true,
     "plugin-dev@claude-plugins-official": true,
     "core@sendcloud": true
