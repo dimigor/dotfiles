@@ -1,9 +1,9 @@
 {
-  "model": "opusplan",
-   "env": {
+  "env": {
     "CLAUDE_CODE_NO_FLICKER": "1",
     "COLORTERM": "truecolor"
   },
+  "model": "opusplan",
   "hooks": {
     "Stop": [
       {
